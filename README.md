@@ -271,6 +271,12 @@ Sample:
 ```
 Now, please deploy my stack with AWS profile [YOUR_PROFILE] and Cognito User Pool ARN set to: [YOUR ARN].
 ```
+
+In my example, agent has managed to deploy my initial API Gateway stack with authorizer, and even implemented some dummy endpoints for CRUD operations on some "items", that we can later remove:
+<img width="1899" height="1026" alt="image" src="https://github.com/user-attachments/assets/3aa9672a-679d-4173-9ae2-42d3b73195ec" />
+
+But the most important thing is that the agent has already worked in a precisely crafted boundaries.
+
   
 TODO: add diagram, explain API Gateway authorizer and how it connects with Cognito, etc.
 Sample prompt: ...
