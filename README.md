@@ -215,6 +215,8 @@ Bootstrap CDK to your account:
 cdk bootstrap --profile [PROFILE]
 ```
 
+**Attention!** This time it is not about your Amplify user profile (which is responsible for front deployments), but about your non-root user created at the very begining as a training prerequisite!
+
 Run synthesis:
 ```bash
 cdk synth
@@ -224,6 +226,7 @@ Deploy the infrastructure:
 ```
 cdk deploy --profile [PROFILE]
 ```
+
 
 ### Implement backend authentication
 TODO: add diagram, explain API Gateway authorizer and how it connects with Cognito, etc.
