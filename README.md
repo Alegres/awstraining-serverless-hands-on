@@ -231,7 +231,27 @@ You can now go to AWS Console and confirm that your stack has been created in Cl
 <img width="1882" height="421" alt="image" src="https://github.com/user-attachments/assets/31eb4c14-b71e-4f95-840b-5c474125301f" />
 
 
+## Setup guardrails for agentic mode for backend
+Expected result:
+* Markdown file with instructions that will set the guardrails in our CDK Python backend project
+
+We can ask Copilot to create a markdown file with instructions for us. Make sure that you are in your backend project in Visual Studio Code.
+
+Please start the agentic mode.
+
+Sample prompt:
+```
+Please create a Copilot instruction markdown file that will set guardrails for my CDK backend infrastructure project written in Python. I want to make sure that my infrastructure code is written with all best practices in terms of the clean code and modules separation. At the same time it should be kept simple. Prepare all architectural guardrails so that my instructions can be used by my Visual Studio Code agent.
+```
+
+**ATTENTION!** Make sure that your **copilot-instructions.md** file is placed under **.github/** directory, otherwise it won't work!
+
 ## Implement backend authentication
+Expected result:
+* Implemented API Gateway
+* Implemented Cognito authorizer
+* Cognito authorizer attached to the API Gateway
+* 
 TODO: add diagram, explain API Gateway authorizer and how it connects with Cognito, etc.
 Sample prompt: ...
 Expected result: ...
