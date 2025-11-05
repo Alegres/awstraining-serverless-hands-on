@@ -266,6 +266,11 @@ Sample VS Code output:
 
 Keep in mind, that agent should constantly run validations (tests), and be able to correct his mistakes automatically!
 
+Now, you can also tell agent to deploy our stack to AWS using prompt.
+Sample:
+```
+Now, please deploy my stack with AWS profile [YOUR_PROFILE] and Cognito User Pool ARN set to: [YOUR ARN].
+```
   
 TODO: add diagram, explain API Gateway authorizer and how it connects with Cognito, etc.
 Sample prompt: ...
