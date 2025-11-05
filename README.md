@@ -76,6 +76,50 @@ npm install -g aws-cdk@2.1006.0
 
 ## Implementation
 ### Create & configure front-end project
+Create a separate space for front-end (with Git Bash):
+```bash
+mkdir serverless-front
+```
+Open the folder in Visual Studio Code, and open **Git Bash terminal.** (NOT POWERSHELL!!)
+
+Make sure you are in your serverless-front directory:
+```bash
+cd serverless-front
+```
+
+Initialize new React application project in this directory:
+```bash
+npx create-react-app .
+```
+
+Configure Amplify:
+```bash
+amplify configure
+```
+
+Signin to your AWS account (technical user).
+Select region eu-central-1 and follow further instruction:
+* https://docs.amplify.aws/gen1/javascript/tools/cli/start/set-up-cli/#configure-the-amplify-cli
+
+Go to IAM -> Users and create a new user. Name it amplify-dev. Do not grant access to the AWS Console.
+Attach AdministratorAccess-Amplify to that user. Review and confirm user creation.
+Then, click your new user name and go to Security Credentials. Create pair of access keys for the Command Line Interface (CLI).
+Save access & secret keys somewhere, so you do not loose access to them.
+Press Enter in the bash console to continue.
+Provide accessKeyId and secretAccessKey, and confirm. Provide profile name amplify-user.
+
+Initialize app:
+```bash
+amplify init
+```
+
+Chooose Amplify Gen 1. Confirm with "Prefer not to answer".
+Enter default name for the project.
+Initialize the project with default configuration.
+**As authentication method choose AWS profile** and select previously created amplify-user profile.
+You can agree or disagree on Amplify improvements.
+
+
 
 #### Setup Cognito User Pool
 ...
