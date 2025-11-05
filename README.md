@@ -101,7 +101,7 @@ Signin to your AWS account (technical user).
 Select region eu-central-1 and follow further instruction:
 * https://docs.amplify.aws/gen1/javascript/tools/cli/start/set-up-cli/#configure-the-amplify-cli
 
-Go to IAM -> Users and create a new user. Name it amplify-dev. Do not grant access to the AWS Console.
+Go to IAM -> Users and create a new user. Name it amplify-dev. **Do not grant access to the AWS Console.** (it should be a simple technical user)
 
 Attach **AdministratorAccess-Amplify** to that user. Review and confirm user creation.
 
