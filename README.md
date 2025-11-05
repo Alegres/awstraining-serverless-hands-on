@@ -102,20 +102,28 @@ Select region eu-central-1 and follow further instruction:
 * https://docs.amplify.aws/gen1/javascript/tools/cli/start/set-up-cli/#configure-the-amplify-cli
 
 Go to IAM -> Users and create a new user. Name it amplify-dev. Do not grant access to the AWS Console.
-Attach AdministratorAccess-Amplify to that user. Review and confirm user creation.
-Then, click your new user name and go to Security Credentials. Create pair of access keys for the Command Line Interface (CLI).
+
+Attach **AdministratorAccess-Amplify** to that user. Review and confirm user creation.
+
+Then, click your new user name and go to Security Credentials. **Create pair of access keys** for the Command Line Interface (CLI).
+
 Save access & secret keys somewhere, so you do not loose access to them.
+
 Press Enter in the bash console to continue.
-Provide accessKeyId and secretAccessKey, and confirm. Provide profile name amplify-user.
+
+Provide **accessKeyId** and **secretAccessKey**, and confirm. Provide profile name **amplify-user.**
 
 Initialize app:
 ```bash
 amplify init
 ```
 
-Chooose Amplify Gen 1. Confirm with "Prefer not to answer".
+**Chooose Amplify Gen 1.** Confirm with "Prefer not to answer".
+
 Enter default name for the project.
+
 Initialize the project with default configuration.
+
 **As authentication method choose AWS profile** and select previously created amplify-user profile.
 You can agree or disagree on Amplify improvements.
 
