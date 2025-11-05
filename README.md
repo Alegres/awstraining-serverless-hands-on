@@ -44,6 +44,12 @@ and:
 npm install -g @aws-amplify/cli
 ```
 
+**Attention!** If your NPM is configured to use your project's repository, then you might have troubles while downloading the required dependencies.
+In such case, please set the official NPM public repository in your installation commands like this:
+```bash
+npm install -g @aws-amplify/cli --registry https://registry.npmjs.org/
+```
+
 Ensure pip & virtualenv are installed:
 
 ```bash
