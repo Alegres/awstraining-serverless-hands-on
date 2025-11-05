@@ -227,6 +227,9 @@ Deploy the infrastructure:
 cdk deploy --profile [PROFILE]
 ```
 
+You can now go to AWS Console and confirm that your stack has been created in Cloud Formation. It should be empty for now:
+<img width="1882" height="421" alt="image" src="https://github.com/user-attachments/assets/31eb4c14-b71e-4f95-840b-5c474125301f" />
+
 
 ## Implement backend authentication
 TODO: add diagram, explain API Gateway authorizer and how it connects with Cognito, etc.
