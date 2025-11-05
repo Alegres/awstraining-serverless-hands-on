@@ -19,7 +19,30 @@ C:\Users\[YOUR_CORP_ID]\AppData\Roaming\npm
 If you cannot edit your Path, request for it at the IT help, or user alternative tools like Power Tools.
 
 Then run following commands, to make sure that everything will work during the training:
-TODO: add required commands
+
+Install AWS Amplify:
+```bash
+npm install -g @aws-amplify/cli
+```
+
+Run configure just to confirm it is working (and exit / cancel right away):
+```bash
+amplify configure
+```
+
+**Attention!** If there is an error:
+<img width="701" height="82" alt="image" src="https://github.com/user-attachments/assets/9eba646b-70d6-41ef-ab80-d0cd21b178c6" />
+
+then run:
+```bash
+npm uninstall -g @aws-amplify/cli
+```
+
+and:
+```bash
+npm install -g @aws-amplify/cli
+```
+
 
 ## Implementation
 ### Create & configure front-end project
