@@ -11,8 +11,10 @@
   * Virtualenv Manager
   * Visual Studio Code with Copilot
 
-Make sure that your Path contains:
-TODO: add path
+Make sure that your Path contains the following NPM reference:
+```bash
+C:\Users\[YOUR_CORP_ID]\AppData\Roaming\npm
+```
 
 If you cannot edit your Path, request for it at the IT help, or user alternative tools like Power Tools.
 
