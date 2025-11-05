@@ -277,6 +277,41 @@ In my example, agent has managed to deploy my initial API Gateway stack with aut
 
 But the most important thing is that the agent has already worked in a precisely crafted boundaries.
 
+Now, let's implement login & registration in Amplify.
+
+You now **should switch your project and go to the front-end.** Open Git bash in terminal in VS Code.
+
+Make sure, that you are in your serverless-front directory.
+
+First, install Amplify extension to our React app:
+```bash
+npm install aws-amplify @aws-amplify/ui-react
+```
+
+Adjust ```amplify-app/src/index.js``` by adding **aws-exports:**
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import { Amplify } from "aws-amplify"; // Import Amplify
+import awsExports from "./aws-exports";
+
+Amplify.configure(awsExports);
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
+```
   
 TODO: add diagram, explain API Gateway authorizer and how it connects with Cognito, etc.
 Sample prompt: ...
