@@ -431,6 +431,8 @@ If your app does not refresh after pushing the changes, then use -c flag to inva
 amplify publish -c
 ```
 
+**ATTENTION!** Make sure that you always save your Javascript files in the VS Code!!
+
 If you face the following error:
 ```bash
 $ cdk synth
