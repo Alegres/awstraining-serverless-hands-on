@@ -173,7 +173,57 @@ Our **amplify-dev** does not have the required permissions at first, therefore, 
 
 
 ### Create & configure backend project
-...
+Create a directory for backend:
+```bash
+mkdir serverless-backend
+```
+
+Open directory in Visual Studio Code and make sure that you are in Git Bash terminal, and that you are located in your new directory:
+```
+cd serverless-backend
+```
+
+Initialize CDK (we will use Python):
+```bash
+cdk init app --language python
+```
+
+Activate project's virtual environment:
+```bash
+source .venv/Scripts/activate
+```
+
+Install required Python's dependencies:
+```bash
+python -m pip install -r requirements.txt
+```
+
+Make sure that you ```C:\Users\[CORPID]\.aws\config``` file has the correct region set (we should work in **eu-central-1**):
+```
+[default]
+region = eu-central-1
+output = json
+```
+
+You can also export **AWS_REGION:**
+```bash
+export AWS_REGION=eu-central-1
+```
+
+Bootstrap CDK to your account:
+```bash
+cdk bootstrap --profile [PROFILE]
+```
+
+Run synthesis:
+```bash
+cdk synth
+```
+
+Deploy the infrastructure:
+```
+cdk deploy --profile [PROFILE]
+```
 
 ### Implement backend authentication
 TODO: add diagram, explain API Gateway authorizer and how it connects with Cognito, etc.
