@@ -98,7 +98,8 @@ amplify configure
 ```
 
 Signin to your AWS account (technical user).
-Select region eu-central-1 and follow further instruction:
+
+**Select region eu-central-1** and follow further instruction:
 * https://docs.amplify.aws/gen1/javascript/tools/cli/start/set-up-cli/#configure-the-amplify-cli
 
 Go to IAM -> Users and create a new user. Name it amplify-dev. **Do not grant access to the AWS Console.** (it should be a simple technical user)
@@ -109,9 +110,11 @@ Then, click your new user name and go to Security Credentials. **Create pair of 
 
 Save access & secret keys somewhere, so you do not loose access to them.
 
-Press Enter in the bash console to continue.
+**Press Enter** in the bash console to continue.
 
-Provide **accessKeyId** and **secretAccessKey**, and confirm. Provide profile name **amplify-user.**
+Provide **accessKeyId** and **secretAccessKey**, and confirm. Provide profile name **amplify-dev.**
+
+Amplify will automatically create a new profile in your **.aws\credentials** file.
 
 Initialize app:
 ```bash
@@ -124,13 +127,35 @@ Enter default name for the project.
 
 Initialize the project with default configuration.
 
-**As authentication method choose AWS profile** and select previously created amplify-user profile.
-You can agree or disagree on Amplify improvements.
+**As authentication method choose AWS profile** and select previously created **amplify-dev** profile.
 
+Amplify will deploy now the Cloud Formation stack allowing future deployments & hosting.
 
+You can agree or disagree on Amplify improvements at the end.
 
-#### Setup Cognito User Pool
-...
+#### Setup Cognito User Pool (Authentication)
+Expected result:
+* Created centralized user pool (in Cognito), that will keep registered users and allow registration & login
+
+Add authentication module:
+```bash
+amplify add auth
+```
+
+Choose Cognito and create new users group. Call it **AmplifyUsers**.
+
+In order to add authentication, Amplify will create a Cognito User Pool, that we will later link to our API Gateway (in the backend module).
+
+Our **amplify-dev** does not have the required permissions at first, therefore, please assign **AdministratorAccess** to that user for a moment.
+
+Then, you can run the following command:
+```bash
+amplify push
+```
+
+**Amplify will create Cognito User pool** and link it with our application. Now you can remove the **AdministratorAccess** from the Cognito user.
+
+**Now, we need to go to AWS console, and copy this pool's ARN, and set it inside our backend's stack.**
 
 ### Create & configure backend project
 ...
