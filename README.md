@@ -74,7 +74,7 @@ npm install -g aws-cdk@2.1006.0
 **Attention!** Version 2.1006.0 is very important here, as newer versions are sometimes causing troubles!
 
 
-## Implementation
+## Setup Front & Backend Projects
 ### Create & configure front-end project
 Create a separate space for front-end (with Git Bash):
 ```bash
@@ -228,15 +228,15 @@ cdk deploy --profile [PROFILE]
 ```
 
 
-### Implement backend authentication
+## Implement backend authentication
 TODO: add diagram, explain API Gateway authorizer and how it connects with Cognito, etc.
 Sample prompt: ...
 Expected result: ...
 
-### Implement logic & asynchronous flow
+## Implement logic & asynchronous flow
 ...
 
-### Implement Bedrock and finalize
+## Implement Bedrock and finalize
 ...
  
   
