@@ -276,6 +276,30 @@ Expected result: ...
 
 ## Implement Bedrock and finalize
 ...
+
+## Known Issues
+If your app does not refresh after pushing the changes, then use -c flag to invalidate CloudFront cache:
+
+```bash
+amplify publish -c
+```
+
+If you face the following error:
+```bash
+$ cdk synth
+Traceback (most recent call last):
+  File "C:\personal\awstraining-serverless\basic-backend\app\app.py", line 4, in <module>
+    import aws_cdk as cdk
+ModuleNotFoundError: No module named 'aws_cdk'
+Subprocess exited with error 1
+```
+
+make sure that you activated your env:
+```bash
+source .venv/Scripts/activate
+```
+
+Also, when running cdk commands, make sure to stay at the location where your cdk.json file is present.
  
   
  
