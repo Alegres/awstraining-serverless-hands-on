@@ -388,7 +388,30 @@ Amplify will start deploying the application to AWS:
 Amplify will also print the output URL:
 <img width="1008" height="299" alt="image" src="https://github.com/user-attachments/assets/e2efdadd-6b42-4d22-a86d-f62a4ab619f2" />
 
-Now, let's open it and register new user...
+Now, let's open it and you should be able to register users & login:
+<img width="1900" height="825" alt="image" src="https://github.com/user-attachments/assets/87a341fa-574a-409a-98ca-f148d24e87fe" />
+
+**Attention!**
+Take a look at the Amplify React code. The simple line:
+```javascript
+export default withAuthenticator(App);
+```
+in App.js let our application automatically introduce registration and login forms.
+
+Everything is now connected with the Cognito Users Pool - our centralized user store :)
+
+JWT tokens from the Cognito will be automatically fetched and attached to our API Gateway requests thanks to these lines:
+```javascript
+      const authToken = (await fetchAuthSession()).tokens?.idToken?.toString();
+
+      const response = await fetch(TEST_URL, {
+        method: "GET",
+        headers: {
+          Authorization: authToken,
+        },
+      });
+```
+
 
   
 TODO: add diagram, explain API Gateway authorizer and how it connects with Cognito, etc.
