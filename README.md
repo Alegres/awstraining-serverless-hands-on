@@ -31,6 +31,7 @@ amplify configure
 ```
 
 **Attention!** If there is an error:
+
 <img width="701" height="82" alt="image" src="https://github.com/user-attachments/assets/9eba646b-70d6-41ef-ab80-d0cd21b178c6" />
 
 then run:
@@ -42,6 +43,29 @@ and:
 ```bash
 npm install -g @aws-amplify/cli
 ```
+
+Ensure pip & virtualenv are installed:
+
+```bash
+python -m ensurepip --upgrade
+```
+
+```bash
+python -m pip install --upgrade pip
+```
+
+```bash
+python -m pip install --upgrade virtualenv
+```
+
+**Attention!** Python must also be added to your env Path to make it work!
+
+Install CDK:
+```bash
+npm install -g aws-cdk@2.1006.0
+```
+
+**Attention!** Version 2.1006.0 is very important here, as newer versions are sometimes causing troubles!
 
 
 ## Implementation
