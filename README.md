@@ -277,6 +277,10 @@ In my example, agent has managed to deploy my initial API Gateway stack with aut
 
 But the most important thing is that the agent has already worked in a precisely crafted boundaries.
 
+The last thing is that you must go to the AWS Console, open your API Gateway, and deploy your API to the prod stage:
+<img width="1902" height="808" alt="image" src="https://github.com/user-attachments/assets/de4a2e87-7d04-4114-a068-e933827191e4" />
+
+
 Now, let's implement login & registration in Amplify.
 
 You now **should switch your project and go to the front-end.** Open Git bash in terminal in VS Code.
@@ -288,7 +292,7 @@ First, install Amplify extension to our React app:
 npm install aws-amplify @aws-amplify/ui-react
 ```
 
-Adjust ```amplify-app/src/index.js``` by adding **aws-exports:**
+Adjust ```src/index.js``` by adding **aws-exports:**
 ```javascript
 import React from 'react';
 import ReactDOM from 'react-dom/client';
@@ -312,6 +316,71 @@ root.render(
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
 ```
+
+We will now create a login & registration form and call our API Gateway.
+
+Thaks to Amplify, we do not have to implement the form on our own. Amplify will use its own Login component and automatically connect it with our Cognito User Pool.
+
+Go to ```src/App.js``` and implement the following code:
+```javascript
+import React, { useState } from "react";
+import './App.css';
+import Login from "./components/Login"; // Import Login component
+
+const API_GATEWAY_URL = "https://dsm265hrp5.execute-api.eu-central-1.amazonaws.com/prod/items";
+
+const App = () => {
+  const [token, setToken] = useState(null);
+  const [apiResponse, setApiResponse] = useState(null);
+
+  const handleLogin = (authToken) => {
+    setToken(authToken);
+  };
+
+  const callAPI = async () => {
+    if (!token) {
+      alert("Please log in first!");
+      return;
+    }
+
+    try {
+      const response = await fetch(API_GATEWAY_URL, {
+        method: "GET",
+        headers: {
+          Authorization: token, // Pass Cognito token
+        },
+      });
+      const data = await response.json();
+      setApiResponse(data);
+    } catch (error) {
+      console.error("API call failed:", error);
+    }
+  };
+
+  return (
+    <div>
+      {!token ? (
+        <Login onLogin={handleLogin} />
+      ) : (
+        <div>
+          <h2>Welcome!</h2>
+          <button onClick={callAPI}>Call API</button>
+          {apiResponse && <pre>{JSON.stringify(apiResponse, null, 2)}</pre>}
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default App;
+```
+
+Make sure to adjust the **API_GATEWAY_URL** and set it to point to your sample API Gateway endpoint deployed in the **backend** module.
+**Attention!** This URL can be taken from your deployed API in API Gateway:
+<img width="1902" height="864" alt="image" src="https://github.com/user-attachments/assets/9ea18bd1-457c-4014-aa94-cd1fd063f1cf" />
+
+"items" here is just an example - a sample output endpoint from my agent, a dummy endpoint that it has implemented.
+
   
 TODO: add diagram, explain API Gateway authorizer and how it connects with Cognito, etc.
 Sample prompt: ...
