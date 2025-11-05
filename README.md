@@ -412,11 +412,11 @@ JWT tokens from the Cognito will be automatically fetched and attached to our AP
       });
 ```
 
+After you register and login, you can click on the button and investigate the result of the API Gateway call:
+<img width="1907" height="252" alt="image" src="https://github.com/user-attachments/assets/20f7bcd0-0bab-4ae1-8519-31222217ef5e" />
 
-  
-TODO: add diagram, explain API Gateway authorizer and how it connects with Cognito, etc.
-Sample prompt: ...
-Expected result: ...
+The error message will say, that the CORS is not enabled on the resource response. It means, that our endpoint is not returning the correct headers.
+Basically, our Lambda integration should set such CORS headers as response. We will work on this in the next chapters.
 
 ## Implement logic & asynchronous flow
 ...
