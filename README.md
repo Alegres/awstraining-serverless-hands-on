@@ -255,6 +255,11 @@ Expected result:
 We will be implementing this part, so the authorizer attached to API Gateway and Cognito:
 <img width="563" height="283" alt="image" src="https://github.com/user-attachments/assets/052aefc7-0f77-466f-b59a-0814d87d8adc" />
 
+Remember, for our agentic task to work, we should come up with a solid prompt with a good context.
+Sample prompt:
+```
+Implement simple RestApi API Gateway with standard CORS options for CRUD and allowed authorization header. Implement Cognito authorizer and attach it to this API Gateway. Do not create Cognito User pool, but retrieve the Cognito User pool from my AWS account based on ARN I provide.
+```
   
 TODO: add diagram, explain API Gateway authorizer and how it connects with Cognito, etc.
 Sample prompt: ...
