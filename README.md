@@ -381,6 +381,26 @@ Make sure to adjust the **API_GATEWAY_URL** and set it to point to your sample A
 
 "items" here is just an example - a sample output endpoint from my agent, a dummy endpoint that it has implemented.
 
+Once everything is working, you can deploy your app to AWS.
+```bash
+amplify add hosting
+```
+
+Choose Amazon CloudFront & S3. Confirm default bucket name.
+
+Then deploy:
+```bash
+amplify publish
+```
+
+Amplify will start deploying the application to AWS:
+<img width="1019" height="312" alt="image" src="https://github.com/user-attachments/assets/978a1925-23f4-47ec-bfc0-df5a3c903aaa" />
+
+Amplify will also print the output URL:
+<img width="1008" height="299" alt="image" src="https://github.com/user-attachments/assets/e2efdadd-6b42-4d22-a86d-f62a4ab619f2" />
+
+Now, let's open it and register new user...
+
   
 TODO: add diagram, explain API Gateway authorizer and how it connects with Cognito, etc.
 Sample prompt: ...
