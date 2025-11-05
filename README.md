@@ -10,6 +10,34 @@
   * Python & Pip
   * Virtualenv Manager
   * Visual Studio Code with Copilot
+
+Make sure that your Path contains:
+TODO: add path
+
+If you cannot edit your Path, request for it at the IT help, or user alternative tools like Power Tools.
+
+Then run following commands, to make sure that everything will work during the training:
+TODO: add required commands
+
+## Implementation
+### Create & configure front-end project
+
+#### Setup Cognito User Pool
+...
+
+### Create & configure backend project
+...
+
+### Implement backend authentication
+TODO: add diagram, explain API Gateway authorizer and how it connects with Cognito, etc.
+Sample prompt: ...
+Expected result: ...
+
+### Implement logic & asynchronous flow
+...
+
+### Implement Bedrock and finalize
+...
  
   
  
