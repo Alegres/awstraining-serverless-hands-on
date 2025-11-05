@@ -260,6 +260,12 @@ Sample prompt:
 ```
 Implement simple RestApi API Gateway with standard CORS options for CRUD and allowed authorization header. Implement Cognito authorizer and attach it to this API Gateway. Do not create Cognito User pool, but retrieve the Cognito User pool from my AWS account based on ARN I provide.
 ```
+
+Sample VS Code output:
+<img width="1902" height="1031" alt="image" src="https://github.com/user-attachments/assets/885b1dd3-2b21-4d8f-9d38-43aa7ca5f649" />
+
+Keep in mind, that agent should constantly run validations (tests), and be able to correct his mistakes automatically!
+
   
 TODO: add diagram, explain API Gateway authorizer and how it connects with Cognito, etc.
 Sample prompt: ...
