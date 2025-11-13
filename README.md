@@ -422,11 +422,11 @@ Basically, our Lambda integration should set such CORS headers as response. We w
 We now want to implement the following components & flows:
 * **Recommendations table** - a DynamoDB table, that will keep recommendations for the feedback that we have received. For example: "According to the feedback that you provided, you should work on the following areas...". The entries to that table will be inserted by the **feedback-consumer,** which will consumer the asynchronous message from SQS, and call Amazon Bedrock to generate some meaningful recommendation.
 * **Recommendations retrieving functionality** - a functionality of our system that will allow retrieving recommendations from our DynamoDB via our REST API.
-** We will implement a Lambda, that will simply return the recommendations for the user that is currently logged in from DynamoDB table.
-** The Lambda will be attached to our API gateway and it will work as the implementation for the GET operation of our REST API.
+ * We will implement a Lambda, that will simply return the recommendations for the user that is currently logged in from DynamoDB table.
+ * The Lambda will be attached to our API gateway and it will work as the implementation for the GET operation of our REST API.
 * **Recommendations deleting functinoality** - a functionality that will allow deleting all recommendations that are no longer needed for the logged in user.
-** We will implement a Lambda, that will simply remove all recommendations for the given user id (user that is currently logged in).
-** The Lambda will be attached to our API gateway and it will work as the implementation for the DELETE operation of our REST API.
+ * We will implement a Lambda, that will simply remove all recommendations for the given user id (user that is currently logged in).
+ * The Lambda will be attached to our API gateway and it will work as the implementation for the DELETE operation of our REST API.
 
 
 All necessary permissions (IAM) should be granted for our Lambdas. CORS headers should be properly returned by our Lambdas in the response.
