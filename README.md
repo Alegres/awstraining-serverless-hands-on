@@ -464,7 +464,14 @@ cdk deploy --profile [PROFILE]
 ```
 
 ## Configure Bedrock
-...
+In the previous chapter the agent should implement the whole backend functionality for us.
+However, there is still some manual action that we have to take in AWS console. We need to **obtain the Amazon Bedrock model id.** And to do this, we first need to activate such model for us in the AWS console:
+
+1. Go to AWS and into the Amazon Bedrock console.
+2. Subscribe to a foundation model (e.g., AI21, Anthropic, or Stability AI).
+3. Copy the model ID from the Cross-Region Inference console (Amazon Bedrock -> Cross-region Inference), one with region included.
+
+Eventually, please set the model ID on the backend side and deploy your stack again.
 
 ## Finish front-end
 The final task is to implement the functionality on the front-end side, and use the endpoints that we implemented on the backend to have a working system, where user can post the feedback as a text in a form, and then receive recommendations after, for example, clicking on the "Receive feedback" button, that will trigger the endpoint that consumes recommendations from our DynamoDB table.
