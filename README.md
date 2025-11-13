@@ -448,6 +448,10 @@ Now, is the description of the task precise enough to take it as an input for ou
 
 Your task is to take this description, refine it (if needed, if you see something that might be important), prepare a good prompt and let the agent do the work. Good luck!
 
+For example, I have received the following output:
+<img width="1894" height="1020" alt="image" src="https://github.com/user-attachments/assets/751c5839-a9cc-4ec4-81bb-5d80bac69004" />
+
+
 ## Configure Bedrock
 ...
 
