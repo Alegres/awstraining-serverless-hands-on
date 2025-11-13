@@ -480,6 +480,10 @@ eu.amazon.nova-micro-v1:0
 
 4. Eventually, please set the model ID on the backend side and deploy your stack again.
 
+In my case, my backend architecture is organized in such way, that all config variables are placed inside the **constants.py**. So I had to set the model id there, and also make sure that the region is set to **eu-central-1!**
+<img width="1381" height="698" alt="image" src="https://github.com/user-attachments/assets/1e1ee6c4-55a9-4aff-a076-31889448e8e9" />
+
+
 ## Finish front-end
 The final task is to implement the functionality on the front-end side, and use the endpoints that we implemented on the backend to have a working system, where user can post the feedback as a text in a form, and then receive recommendations after, for example, clicking on the "Receive feedback" button, that will trigger the endpoint that consumes recommendations from our DynamoDB table.
 
