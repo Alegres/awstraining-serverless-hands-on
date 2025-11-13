@@ -471,10 +471,10 @@ However, there is still some manual action that we have to take in AWS console. 
 2. Go to the **Model catalog** and search for the simplest, cheapest model, eg. **Nova Micro.** Make sure that the model has the **Cross-region inference**.
 <img width="1872" height="764" alt="image" src="https://github.com/user-attachments/assets/772667c9-f3c9-4757-9881-90e575de4b9c" />
 
-3. Click on that model and copy the **Model ID**.
+3. Click on that model and copy the **Model ID**. Add "eu" at the beginning (to use it in EU region more efficiently) and save it somewhere.
 <img width="1902" height="750" alt="image" src="https://github.com/user-attachments/assets/7649d810-0156-4e69-9e31-860ef6043df9" />
 ```bash
-amazon.nova-micro-v1:0
+eu.amazon.nova-micro-v1:0
 ```
 
 4. Eventually, please set the model ID on the backend side and deploy your stack again.
