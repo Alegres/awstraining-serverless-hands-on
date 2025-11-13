@@ -486,6 +486,20 @@ In my case, my backend architecture is organized in such way, that all config va
 **ATTENTION!**
 Remember to save your constants file before deployment!!
 
+Then you can proceed with:
+```bash
+source .venv/Scripts/activate
+```
+
+and:
+```bash
+cdk deploy --profile [PROFILE]
+```
+
+CDK should show you the change:
+<img width="1254" height="381" alt="image" src="https://github.com/user-attachments/assets/ec5e1d71-23b1-441d-bca7-c2491c99c313" />
+
+
 ## Finish front-end
 The final task is to implement the functionality on the front-end side, and use the endpoints that we implemented on the backend to have a working system, where user can post the feedback as a text in a form, and then receive recommendations after, for example, clicking on the "Receive feedback" button, that will trigger the endpoint that consumes recommendations from our DynamoDB table.
 
