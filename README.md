@@ -418,7 +418,7 @@ After you register and login, you can click on the button and investigate the re
 The error message will say, that the CORS is not enabled on the resource response. It means, that our endpoint is not returning the correct headers.
 Basically, our Lambda integration should set such CORS headers as response. We will work on this in the next chapters.
 
-## Implement logic & asynchronous flow
+## Main logic & the asynchronous flow
 We now want to implement the following components & flows:
 * **Recommendations table** - a DynamoDB table, that will keep recommendations for the feedback that we have received. For example: "According to the feedback that you provided, you should work on the following areas...". The entries to that table will be inserted by the **feedback consuming Lambda**, which will consume the asynchronous message from SQS, and call Amazon Bedrock to generate some meaningful recommendation.
 * **Recommendations retrieving functionality** - a functionality of our system that will allow retrieving recommendations from our DynamoDB via our REST API.
@@ -443,8 +443,18 @@ We now want to implement the following components & flows:
 All necessary permissions (IAM) should be granted for our Lambdas and our SQS should be able to consume from the SNS topic. CORS headers should be properly returned by our Lambdas in the response.
 Cognito authorizer should be attached to our API Gateway methods. Our Lambdas should retrieve the user id from the Authorizer context. Make sure that proper logging and error handling is implemented in the Lambda functions.
 
-## Implement Bedrock and finalize
+### Implementation
+Now, is the description of the task precise enough to take it as an input for our agent?
+
+Your task is to take this description, refine it (if needed, if you see something that might be important), prepare a good prompt and let the agent do the work. Good luck!
+
+## Configure Bedrock
 ...
+
+## Finish front-end
+The final task is to implement the functionality on the front-end side, and use the endpoints that we implemented on the backend to have a working system, where user can post the feedback as a text in a form, and then receive recommendations after, for example, clicking on the "Receive feedback" button, that will trigger the endpoint that consumes recommendations from our DynamoDB table.
+
+Try to use the knowledge you gathered so far to implement this solution with the help of an agent!
 
 ## Known Issues
 If your app does not refresh after pushing the changes, then use -c flag to invalidate CloudFront cache:
