@@ -420,17 +420,28 @@ Basically, our Lambda integration should set such CORS headers as response. We w
 
 ## Implement logic & asynchronous flow
 We now want to implement the following components & flows:
-* **Recommendations table** - a DynamoDB table, that will keep recommendations for the feedback that we have received. For example: "According to the feedback that you provided, you should work on the following areas...". The entries to that table will be inserted by the **feedback-consumer,** which will consumer the asynchronous message from SQS, and call Amazon Bedrock to generate some meaningful recommendation.
+* **Recommendations table** - a DynamoDB table, that will keep recommendations for the feedback that we have received. For example: "According to the feedback that you provided, you should work on the following areas...". The entries to that table will be inserted by the **feedback consuming Lambda**, which will consume the asynchronous message from SQS, and call Amazon Bedrock to generate some meaningful recommendation.
 * **Recommendations retrieving functionality** - a functionality of our system that will allow retrieving recommendations from our DynamoDB via our REST API.
   * We will implement a Lambda, that will simply return the recommendations for the user that is currently logged in from DynamoDB table.
   * The Lambda will be attached to our API gateway and it will work as the implementation for the GET operation of our REST API.
-* **Recommendations deleting functinoality** - a functionality that will allow deleting all recommendations that are no longer needed for the logged in user.
+* **Recommendations deleting functionality** - a functionality that will allow deleting all recommendations that are no longer needed for the logged in user.
   * We will implement a Lambda, that will simply remove all recommendations for the given user id (user that is currently logged in).
   * The Lambda will be attached to our API gateway and it will work as the implementation for the DELETE operation of our REST API.
+* **SNS topic** that will accept our asynchronous requests to trigger the recommendation process.
+  * There will be a **Feedback SQS Queue** that consumes messages on that topic (is subscribed to that topic).
+  * The messages arriving at the SQS queue should trigger the feedback consuming Lambda and trigger the asynchronous flow.
+* **Feedback registering functionality** that will accept the text feedback from the user and generate a message to the SNS topic asking for recommendations which could be applied to the feedback that the user received.
+  * We will implement a Lambda that will take feedback as an input and send message to the SNS topic.
+  * The SNS topic message should contain the feedback message and the id of the user for which the recommendations should be generated.
+  * The Lambda will be attached to our API Gateway as POST REST endpoint.
+* **Feedback consuming functionality** that will consume asynchronous messages from SQS and call Amazon Bedrock to generate some meaningful recommendation.
+  * We will implement Lambda function that will be triggered by SQS messages.
+  * The function will take bedrock model id from environmental variables. We will later provide this model id to call Bedrock model.
+  * The function will ask model for the recommendations and after receiving the response it will put the recommendation for the given user to the DynamoDB table.
+  * Eventually, it will also delete the consumed SQS message from queue to prevent double processing.
 
-
-All necessary permissions (IAM) should be granted for our Lambdas. CORS headers should be properly returned by our Lambdas in the response.
-Cognito authorizer should be attached to our API Gateway methods. Our Lambdas should retrieve the user id from the Authorizer context.
+All necessary permissions (IAM) should be granted for our Lambdas and our SQS should be able to consume from the SNS topic. CORS headers should be properly returned by our Lambdas in the response.
+Cognito authorizer should be attached to our API Gateway methods. Our Lambdas should retrieve the user id from the Authorizer context. Make sure that proper logging and error handling is implemented in the Lambda functions.
 
 ## Implement Bedrock and finalize
 ...
