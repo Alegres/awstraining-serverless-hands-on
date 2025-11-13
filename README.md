@@ -486,6 +486,12 @@ In my case, my backend architecture is organized in such way, that all config va
 **ATTENTION!**
 Remember to save your constants file before deployment!!
 
+**ATTENTION 2!!**
+In case CDK does not see changes in your envs, this might be due to the fact that it is treating the envs as a metadata only. In this case you can ask your agent to implement the function hashing mechanism, with a prompt like this:
+```
+Add MD5 hash of Lambda environment variables to the function's description field to force CloudFormation updates when only env vars change.
+```
+
 Then you can proceed with:
 ```bash
 source .venv/Scripts/activate
