@@ -473,6 +473,7 @@ However, there is still some manual action that we have to take in AWS console. 
 
 3. Click on that model and copy the **Model ID**. Add "eu" at the beginning (to use it in EU region more efficiently) and save it somewhere.
 <img width="1902" height="750" alt="image" src="https://github.com/user-attachments/assets/7649d810-0156-4e69-9e31-860ef6043df9" />
+
 ```bash
 eu.amazon.nova-micro-v1:0
 ```
