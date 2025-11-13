@@ -451,7 +451,14 @@ Your task is to take this description, refine it (if needed, if you see somethin
 For example, I have received the following output:
 <img width="1894" height="1020" alt="image" src="https://github.com/user-attachments/assets/751c5839-a9cc-4ec4-81bb-5d80bac69004" />
 
-**Remember**, that you can deploy your CDK stack again with the command:
+**Remember**, that you can deploy your CDK stack again with the CDK commands.
+
+First, activate your virtual env:
+```bash
+source .venv/Scripts/activate
+```
+
+and then simply run:
 ```bash
 cdk deploy --profile [PROFILE]
 ```
