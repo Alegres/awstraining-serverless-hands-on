@@ -468,10 +468,16 @@ In the previous chapter the agent should implement the whole backend functionali
 However, there is still some manual action that we have to take in AWS console. We need to **obtain the Amazon Bedrock model id.** And to do this, we first need to activate such model for us in the AWS console:
 
 1. Go to AWS and into the Amazon Bedrock console.
-2. Subscribe to a foundation model (e.g., AI21, Anthropic, or Stability AI).
-3. Copy the model ID from the Cross-Region Inference console (Amazon Bedrock -> Cross-region Inference), one with region included.
+2. Go to the **Model catalog** and search for the simplest, cheapest model, eg. **Nova Micro.** Make sure that the model has the **Cross-region inference**.
+<img width="1872" height="764" alt="image" src="https://github.com/user-attachments/assets/772667c9-f3c9-4757-9881-90e575de4b9c" />
 
-Eventually, please set the model ID on the backend side and deploy your stack again.
+3. Click on that model and copy the **Model ID**.
+<img width="1902" height="750" alt="image" src="https://github.com/user-attachments/assets/7649d810-0156-4e69-9e31-860ef6043df9" />
+```bash
+amazon.nova-micro-v1:0
+```
+
+4. Eventually, please set the model ID on the backend side and deploy your stack again.
 
 ## Finish front-end
 The final task is to implement the functionality on the front-end side, and use the endpoints that we implemented on the backend to have a working system, where user can post the feedback as a text in a form, and then receive recommendations after, for example, clicking on the "Receive feedback" button, that will trigger the endpoint that consumes recommendations from our DynamoDB table.
