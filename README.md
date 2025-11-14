@@ -16,6 +16,18 @@ Our REST API will be built on **API Gateway:**
 * It handles request routing, throttling, authentication, authorization, and integrates natively with services like Lambda to expose serverless backends.
 * Basically, we will define our API in this service and later attach Lambdas to **react to our HTTP requests.**
 
+We will attach an **Authorizer** to our API Gateway, to make sure that only authenticated users can access our API. We will keep our users inside **Cognito:**
+* Amazon Cognito is a fully managed authentication and user management service that provides secure sign-up, sign-in, and access control for web and mobile applications.
+* It supports user pools for identity management, federated logins (Google, Apple, SAML, OIDC), multi-factor authentication, and issues JWT tokens that integrate directly with API Gateway, ALB, and other AWS services.
+* Basically, we will store our registered users there (Amplify will take care for that!), and we will ask Cognito to give as an authentication token, that we will later attach to our HTTP requests to the API Gateway, and the API Gateway will use the authorizer to again call Cognito and confirm if the token is correct.
+
+The **authentication flow** will be following:
+* The user signs in through Cognito User Pool (via Amplify front-end), which returns ID and access JWT tokens.
+* The client (front-end) calls API Gateway and includes the JWT token in the Authorization header.
+* API Gateway’s Cognito Authorizer validates the JWT, checks signature, expiration, and audience, and only then forwards the request to the Lambda.
+* If the token is valid, API Gateway injects the user’s identity data into the request context.
+* Inside the Lambda handler, you can access the authenticated user ID (the Cognito sub claim) programatically, and run actions specific for that authenticated user (eg. store something for him in the database).
+
 We will integrate our API endpoints with **Lambdas:**
 * AWS Lambda is a serverless compute service that runs functions in response to events without provisioning or managing servers.
 * It automatically scales based on request volume and charges only for execution time, with strong event integrations across AWS (S3, DynamoDB, SQS, API Gateway, etc.).
@@ -49,6 +61,18 @@ Last but not least! We will build the application using **Copilot.**
 Please, **install Visual Studio Code** and install the **Copilot plugin,** so that you can use the **agent mode** and all the modern GenAI features, that speed up the application development.
 You can read more about the agent mode here:
 * https://code.visualstudio.com/blogs/2025/04/07/agentMode
+
+**ATTENTION!**
+You can take a look at the ready applications here:
+* Backend:
+  * https://github.com/Alegres/awstraining-serverless-backend
+* Front-end:
+  * https://github.com/Alegres/awstraining-serverless-front
+ 
+ They were written without using the GenAI agent mode. They are much simpler, and do not introduce any modular architecture / best practices.
+ As you will be using the agent mode, you might **find yourself a little bit lost,** as you do not know the languages, nor the technologies, so it might be hard for you to actually validate the agent's output.
+** However, do not give up!** Try to ask the agent what did he mean, and if he can explain to you the concepts he is implementing!!
+ At worst case, please just refer to the mentioned ready solutions, as they are much simpler, and they are 100% working.
 
 ## Prerequisites
 * Create non-root user:
