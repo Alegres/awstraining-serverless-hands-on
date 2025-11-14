@@ -4,7 +4,7 @@
 We are building a serverless application that allows users to register & login, and then to enter the feedback that they have received from their manager / coworker, and receive a **recommendation** (meaning what can they improve), which will  be generated with the help of an AI model (Amazon Bedrock).
 
 We will build an asynchronous flow:
-<img width="753" height="649" alt="image" src="https://github.com/user-attachments/assets/c6518ea6-d67c-4b06-8492-61a8309f8f9f" />
+<img width="992" height="831" alt="image" src="https://github.com/user-attachments/assets/cde2793f-dee5-4b2a-990e-fa89a59ccde3" />
 
 Our front-end will be built with **Amplify,** using React:
 * AWS Amplify is a managed development platform that simplifies building, deploying, and hosting full-stack web and mobile applications using AWS services.
