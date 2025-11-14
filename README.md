@@ -1,8 +1,58 @@
 # Hands-on
 
+## Introduction
+We are building a serverless application that allows users to register & login, and then to enter the feedback that they have received from their manager / coworker, and receive a **recommendation** (meaning what can they improve), which will  be generated with the help of an AI model (Amazon Bedrock).
+
+We will build an asynchronous flow:
+<img width="753" height="649" alt="image" src="https://github.com/user-attachments/assets/c6518ea6-d67c-4b06-8492-61a8309f8f9f" />
+
+Our front-end will be built with **Amplify,** using React:
+* AWS Amplify is a managed development platform that simplifies building, deploying, and hosting full-stack web and mobile applications using AWS services.
+* It provides CLI tools, UI components, and backend scaffolding (Auth, API, Storage, Data, Functions) that automatically integrate with services like Cognito, AppSync, S3, and Lambda, enabling rapid development with minimal infrastructure management.
+* Basically, Amplify will give us some in-built cool features that speed up our front-end development.
+
+Our REST API will be built on **API Gateway:**
+* API Gateway is a fully managed service for creating, publishing and managing REST, HTTP, and WebSocket APIs at scale.
+* It handles request routing, throttling, authentication, authorization, and integrates natively with services like Lambda to expose serverless backends.
+
+We will integrate our API endpoints with **Lambdas:**
+* AWS Lambda is a serverless compute service that runs functions in response to events without provisioning or managing servers. Basically - you provide a code, but do not care about any servers. The code can be written in multiple languages, including Python and Javascript.
+* It automatically scales based on request volume and charges only for execution time, with strong event integrations across AWS (S3, DynamoDB, SQS, API Gateway, etc.).
+
+We will send messages to **SNS:**
+* SNS is a fully managed pub/sub messaging service that pushes messages to subscribers through protocols like SQS, Lambda, HTTP(S), SMS, or email.
+* It delivers messages with a fan-out pattern, guaranteeing at-least-once delivery to each subscribed endpoint, and supports filtering and message attributes.
+* Basically, what will be delivered to SNS, will be then consumed by the subcribers attached to that SNS.
+
+We will subscribe our **SQS** to the SNS:
+* SQS is a fully managed message queuing service for decoupling distributed systems by reliably buffering messages between producers and consumers.
+* It provides at-least-once delivery, supports long polling, handles automatic message visibility timeouts, and offers both Standard (high throughput, best-effort order) and FIFO (exactly-once order) options.
+* Basically, one of our Lambda functions will later **consume messages from that SQS.**
+
+We will setup a **DynamoDB database:**
+* DynamoDB is a fully managed NoSQL key-value and document database designed for low latency, high throughput workloads at any scale.
+* It provides automatic horizontal scaling, configurable consistency (eventually or strongly consistent reads), and supports advanced features like DynamoDB Streams, TTL, and global tables.
+* Basically, we will store our recommendations to the feedback inside a DynamoDB table.
+
+Our infrastructure in AWS will be built using **CDK:**
+* AWS CDK is an **infrastructure-as-code framework** that lets you define cloud resources using familiar programming languages like TypeScript, Python, or Java instead of YAML/JSON templates.
+* It synthesizes your code into CloudFormation templates and deploys them, providing strong modularity, reuse, and higher-level abstractions called Constructs to simplify complex AWS architectures.
+
+We will call **Amazon Bedrock** (an AI model), to get good recommendations on the feedback we have provided:
+* Amazon Bedrock is a fully managed service for building generative AI applications using foundation models from AWS and third-party providers (e.g., Anthropic, Meta, Mistral, Amazon).
+* It provides secure API access to models, supports customization through fine-tuning and Retrieval Augmented Generation (RAG), and integrates with AWS services for monitoring, data governance, and enterprise-grade security.
+
+Last but not least! We will build the application using **Copilot.**
+Please, **install Visual Studio Code** and install the **Copilot plugin,** so that you can use the **agent mode** and all the modern GenAI features, that speed up the application development.
+You can read more about the agent mode here:
+* https://code.visualstudio.com/blogs/2025/04/07/agentMode
+
 ## Prerequisites
 * Create non-root user:
   * https://github.com/Alegres/awstraining-basics-hands-on?tab=readme-ov-file#create-non-root-user
+  * If you do not have the sandbox account, please create your personal AWS account.
+     * This training will not generate any serious charges on your card, as we are mostly working in a serverless mode, so basically you pay-as-you-use.
+     * We expect max. 5$ spendings.
 * Install **(preferably run all commands from Git Bash to avoid issues!):**
   * Git Bash
   * AWS CLI
