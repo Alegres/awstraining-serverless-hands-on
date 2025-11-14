@@ -6,7 +6,7 @@ We are building a serverless application that allows users to register & login, 
 We will build an asynchronous flow:
 <img width="992" height="831" alt="image" src="https://github.com/user-attachments/assets/cde2793f-dee5-4b2a-990e-fa89a59ccde3" />
 
-Our front-end will be built with **Amplify,** using React:
+Our front-end will be built with **Amplify,** using React (a Javascript front-end framework):
 * AWS Amplify is a managed development platform that simplifies building, deploying, and hosting full-stack web and mobile applications using AWS services.
 * It provides CLI tools, UI components, and backend scaffolding (Auth, API, Storage, Data, Functions) that automatically integrate with services like Cognito, AppSync, S3, and Lambda, enabling rapid development with minimal infrastructure management.
 * Basically, Amplify will give us some in-built cool features that speed up our front-end development.
@@ -14,10 +14,12 @@ Our front-end will be built with **Amplify,** using React:
 Our REST API will be built on **API Gateway:**
 * API Gateway is a fully managed service for creating, publishing and managing REST, HTTP, and WebSocket APIs at scale.
 * It handles request routing, throttling, authentication, authorization, and integrates natively with services like Lambda to expose serverless backends.
+* Basically, we will define our API in this service and later attach Lambdas to **react to our HTTP requests.**
 
 We will integrate our API endpoints with **Lambdas:**
-* AWS Lambda is a serverless compute service that runs functions in response to events without provisioning or managing servers. Basically - you provide a code, but do not care about any servers. The code can be written in multiple languages, including Python and Javascript.
+* AWS Lambda is a serverless compute service that runs functions in response to events without provisioning or managing servers.
 * It automatically scales based on request volume and charges only for execution time, with strong event integrations across AWS (S3, DynamoDB, SQS, API Gateway, etc.).
+* Basically - you provide a code, but do not care about any servers. The code can be written in multiple languages, including Python and Javascript.
 
 We will send messages to **SNS:**
 * SNS is a fully managed pub/sub messaging service that pushes messages to subscribers through protocols like SQS, Lambda, HTTP(S), SMS, or email.
@@ -37,6 +39,7 @@ We will setup a **DynamoDB database:**
 Our infrastructure in AWS will be built using **CDK:**
 * AWS CDK is an **infrastructure-as-code framework** that lets you define cloud resources using familiar programming languages like TypeScript, Python, or Java instead of YAML/JSON templates.
 * It synthesizes your code into CloudFormation templates and deploys them, providing strong modularity, reuse, and higher-level abstractions called Constructs to simplify complex AWS architectures.
+* In our training, we will write infrastructure code in Python (and our Lambda code as well).
 
 We will call **Amazon Bedrock** (an AI model), to get good recommendations on the feedback we have provided:
 * Amazon Bedrock is a fully managed service for building generative AI applications using foundation models from AWS and third-party providers (e.g., Anthropic, Meta, Mistral, Amazon).
