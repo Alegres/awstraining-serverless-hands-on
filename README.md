@@ -15,6 +15,14 @@ Our REST API will be built on **API Gateway:**
 * API Gateway is a fully managed service for creating, publishing and managing REST, HTTP, and WebSocket APIs at scale.
 * It handles request routing, throttling, authentication, authorization, and integrates natively with services like Lambda to expose serverless backends.
 * Basically, we will define our API in this service and later attach Lambdas to **react to our HTTP requests.**
+* We would like to expose an endpoint that allows users to provide the feedback they received
+  * Something like **POST /feedback**
+* This endpoint will only accept message, but it will trigger the **asynchronous** evaluation process
+* It means, that we should consider returning 202 HTTP status code
+* Then, another endpoint, something like **GET /feedback** or **GET /recommendation**, should let users retrieve Amazon Bedrock-supported recommendation for the received feedback:
+  * What can I improve?
+  * What trainings should I consider?
+  * Etc.
 
 We will attach an **Authorizer** to our API Gateway, to make sure that only authenticated users can access our API. We will keep our users inside **Cognito:**
 * Amazon Cognito is a fully managed authentication and user management service that provides secure sign-up, sign-in, and access control for web and mobile applications.
@@ -32,11 +40,21 @@ We will integrate our API endpoints with **Lambdas:**
 * AWS Lambda is a serverless compute service that runs functions in response to events without provisioning or managing servers.
 * It automatically scales based on request volume and charges only for execution time, with strong event integrations across AWS (S3, DynamoDB, SQS, API Gateway, etc.).
 * Basically - you provide a code, but do not care about any servers. The code can be written in multiple languages, including Python and Javascript.
+* We will need:
+  * One Lambda for **consuming the feedback request (POST)** and creating the SNS message -> it will be attached as integration to API Gateway
+  * One Lambda for **consuming the feedback request from SQS,** calling Amazon Bedrock, and creating the feedback recommendation in DynamoDB
+  * One Lambda for **retrieving the recommendation for the given feedback (GET)** from DynamoDB -> it will be attached as integration to API Gateway
 
-We will send messages to **SNS:**
+We will send feedback request messages to **SNS:**
 * SNS is a fully managed pub/sub messaging service that pushes messages to subscribers through protocols like SQS, Lambda, HTTP(S), SMS, or email.
 * It delivers messages with a fan-out pattern, guaranteeing at-least-once delivery to each subscribed endpoint, and supports filtering and message attributes.
 * Basically, what will be delivered to SNS, will be then consumed by the subcribers attached to that SNS.
+* We want to publish feedback request message to SNS to trigger the asynchronous flow, as the recommendation-giving process could be actually a very long process and we want to keep it separate from our main application
+* We want to then subscribe SQS to our SNS.
+  * With SNS -> SQS -> Lambda flow, SQS acts as a buffer.
+    * Lambda polls messages at a controlled rate
+    * Our system can absrob bursts without failing
+    * We have built-in retry & durability
 
 We will subscribe our **SQS** to the SNS:
 * SQS is a fully managed message queuing service for decoupling distributed systems by reliably buffering messages between producers and consumers.
